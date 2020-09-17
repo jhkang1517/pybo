@@ -35,6 +35,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # ----- edit ------
+    'common.apps.CommonConfig',
+    # -
     # ----- edit -----
     'pybo.apps.PyboConfig',
     # -

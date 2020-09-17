@@ -39,6 +39,10 @@ urlpatterns = [
     # 따라서 이제 pybo/question/craate, pybo/answser/create 등의 URL이 추가되어도 config/urls.py 파일을 수정할 필요 없다.
     # -
 
+    # ----- edit -----
+    path('common/', include('common.urls')),
+    # - 
+
 
 
 ]
