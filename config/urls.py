@@ -41,7 +41,10 @@ urlpatterns = [
 
     # ----- edit -----
     path('common/', include('common.urls')),
-    # - 
+    # -
+
+    # ----- edit -----
+    path('', views.index, name='index')
 
 
 

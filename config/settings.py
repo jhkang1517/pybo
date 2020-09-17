@@ -130,8 +130,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# ---------------------------------------- [edit] ---------------------------------------- #
+# ----- edit -----
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-# ---------------------------------------------------------------------------------------- #
+# -
+
+# ----- edit -----
+# 로그인/로그아웃 성공후 이동하는 URL
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+# -

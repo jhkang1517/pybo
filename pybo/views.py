@@ -11,6 +11,10 @@ from .forms import QuestionForm, AnswerForm
 from django.core.paginator import Paginator
 # -
 
+# ----- edit -----
+from django.contrib.auth.decorators import login_required
+# -
+
 # Create your views here.
 # ----- edit -----
 def index(request):
@@ -49,6 +53,7 @@ def detail(request, question_id):
     return render(request, 'pybo/question_detail.html', context)
 # -
 
+@login_required(login_url='common:login')
 def question_create(request):
     """
     pybo 질문 등록
@@ -59,6 +64,7 @@ def question_create(request):
         if form.is_valid():
             question = form.save(commit=False)
             question.create_date = timezone.now()
+            question.author = request.user  # 추가한 속성 author 적용
             question.save()
             return redirect('pybo:index')
 
@@ -71,6 +77,7 @@ def question_create(request):
     # -
 
 # ----- edit -----
+@login_required(login_url='common:login')
 def answer_create(request, question_id):
     """
     pybo 답변 등록
@@ -83,6 +90,7 @@ def answer_create(request, question_id):
             answer = form.save(commit=False)
             answer.create_date = timezone.now()
             answer.question = question
+            answer.author = request.user # 추가한 속성 author 적용
             answer.save()
             return redirect('pybo:detail', question_id=question.id)
 
