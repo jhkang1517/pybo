@@ -20,6 +20,7 @@ class Question(models.Model):
     # ----- edit -----
     modify_date = models.DateTimeField(null=True, blank=True)
     # - null=True, 와 blank=True를 사용하면 어떤 조건으로든 값을 비워둘 수 있다는 것을 의미한다.
+    voter = models.ManyToManyField(User) # voter 추가
 
     # ----- edit -----
     def __str__(self):

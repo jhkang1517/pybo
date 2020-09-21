@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path # 아래에서 사용
 
 # ----- edit -----
-from pybo import views
+from pybo.views import base_views
 # -
 
 # ----- edit -----
@@ -27,11 +27,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # ----- edit -----
-    path('pybo/', views.index),
-    # 특별한 경우가 아니라면, 항상 URL 매핑시 끝에 / 를 붙여줄 것 (웹 브라우저 변환 시 URL을 정규화하는 장고의 기능으로 인해 자동으로 변환된다.)
-    # views.index = views.py 파일의 index 함수를 의미
-    # -
 
     # ----- edit -----
     path('pybo/', include('pybo.urls')),
@@ -44,8 +39,9 @@ urlpatterns = [
     # -
 
     # ----- edit -----
-    path('', views.index, name='index')
-
+    path('', base_views.index, name='index'),  # '/' 에 해당되는 path
+    # 특별한 경우가 아니라면, 항상 URL 매핑시 끝에 / 를 붙여줄 것 (웹 브라우저 변환 시 URL을 정규화하는 장고의 기능으로 인해 자동으로 변환된다.)
+    # views.index = views.py 파일의 index 함수를 의미
 
 
 ]
