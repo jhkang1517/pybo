@@ -14,13 +14,13 @@ class Question(models.Model):
     subject = models.CharField(max_length=200) # 질문의 제목
     content = models.TextField() # 질문의 내용
     create_date = models.DateTimeField() # 질문을 작성한 일시
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question')
     # author = models.ForeignKey(User, on_delete=models.CASCADE, null=True) # null 값을 허용하는 속성 값을 넣어주는 방법도 존재한다.
 
     # ----- edit -----
     modify_date = models.DateTimeField(null=True, blank=True)
     # - null=True, 와 blank=True를 사용하면 어떤 조건으로든 값을 비워둘 수 있다는 것을 의미한다.
-    voter = models.ManyToManyField(User) # voter 추가
+    voter = models.ManyToManyField(User, related_name='voter_question') # voter 추가
 
     # ----- edit -----
     def __str__(self):
@@ -31,12 +31,13 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE) # 질문 (어떤 질문의 답변인지 알아야하므로 질문 속성이 필요)
     content = models.TextField() # 답변의 내용
     create_date = models.DateTimeField() # 답변을 작성한 일시
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_answer') # voter 추가
 
     # ----- edit -----
     modify_date = models.DateTimeField(null=True, blank=True)
     # -
 
+    voter = models.ManyToManyField(User, related_name='voter_answer')
 # -
 
 # ----- edit -----

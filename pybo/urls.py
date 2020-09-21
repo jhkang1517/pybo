@@ -1,7 +1,7 @@
 # ----- edit -----
 from django.urls import path
 
-from .views import base_views, question_views, answer_views, comment_views
+from .views import base_views, question_views, answer_views, comment_views, vote_views
 
 
 # ----- edit -----
@@ -32,6 +32,10 @@ urlpatterns = [
     path('comment/modify/answer/<int:comment_id>/', comment_views.comment_modify_answer, name='comment_modify_answer'),
     path('comment/delete/answer/<int:comment_id>/', comment_views.comment_delete_answer, name='comment_delete_answer'),
     # ---------------------------------------------------------------------------------------- #
+
+    # vote_views.py
+    path('vote/question/<int:question_id>/', vote_views.vote_question, name='vote_question'),
+    path('vote/answer/<int:answer_id>/', vote_views.vote_answer, name='vote_answer'),
 ]
 # urlpattern의 path는 path('', views.index) 처럼 pybo/ 를 생략한다.
 # 그 이유는 config/urls.py 파일에서 이미 pybo/ 로 시작하는 URL이 매핑되었기 때문이다.
